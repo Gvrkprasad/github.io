@@ -152,8 +152,13 @@
                 <li><a href="#" onclick="loadScript('script13')">VM to MySQL Connection</a></li>
                 <li><a href="#" onclick="loadScript('script14')">AWS Service's Status</Script></a></li>
                 <li><a href="#" onclick="loadScript('script15')">Grafana Installation</a></li>
-                <li><a href="#" onclick="loadScript('script16')">--</a></li>
-                <li><a href="#" onclick="loadScript('script17')">--</a></li>
+                <li><a href="#" onclick="loadScript('script16')">Jfrog Installation</a></li>
+                <li><a href="#" onclick="loadScript('script17')">Kops Setup</a></li>
+                <li><a href="#" onclick="loadScript('script18')">Minikube AmznLiinux Setup</a></li>
+                <li><a href="#" onclick="loadScript('script19')">--</a></li>
+                <li><a href="#" onclick="loadScript('script20')">--</a></li>
+                
+                
             </ul>
         </div>
 
@@ -696,14 +701,62 @@ systemctl start grafana-server.service
 
              script16:`
 <pre><code>
-
-
+#! /bin/bash
+wget https://releases.jfrog.io/artifactory/artifactory-rpms/artifactory-rpms.repo -O jfrog-artifactory-rpms.repo
+mv jfrog-artifactory-rpms.repo /etc/yum.repos.d/
+yum update -y
+yum install jfrog-artifactory-oss -y
+systemctl start artifactory.service
+systemctl status artifactory.service
 
 </code></pre>
               `,
                 script17:`
+<pre><code>
+aws configure   # configure with aws access key & secret Key
+curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+wget https://github.com/kubernetes/kops/releases/download/v1.25.0/kops-linux-amd64
+sudo chmod +x kops-linux-amd64 kubectl
+sudo mv kubectl /usr/local/bin/kubectl
+sudo mv kops-linux-amd64 /usr/local/bin/kops
 
+aws s3api create-bucket --bucket cloudanddevopsbyraham007.k8s.local --region us-east-1
+aws s3api put-bucket-versioning --bucket cloudanddevopsbyraham007.k8s.local --region us-east-1 --versioning-configuration Status=Enabled
+export KOPS_STATE_STORE=s3://cloudanddevopsbyraham007.k8s.local
+kops create cluster --name rahams.k8s.local --zones us-east-1a --master-count=1 --master-size t2.medium --node-count=2 --node-size t2.micro
+kops update cluster --name rahams.k8s.local --yes --admin
+</code></pre>
+            `,
+             script18:`
+<pre><code>
+sudo apt update -y
+sudo apt upgrade -y
+cd /home/ubuntu/
+sudo apt install curl wget apt-transport-https -y
+sudo curl -fsSL https://get.docker.com -o get-docker.sh
+sudo sh get-docker.sh
+sudo curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
+sudo mv minikube-linux-amd64 /usr/local/bin/minikube
+sudo chmod +x /usr/local/bin/minikube
+sudo minikube version
+sudo curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+sudo curl -LO "https://dl.k8s.io/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl.sha256"
+sudo echo "$(cat kubectl.sha256) kubectl" | sha256sum --check
+sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
+sudo usermod -aG docker ubuntu && newgrp docker
+source .bashrc
+minikube start --driver=docker --force
+</code></pre>
+            `,
+            script19:`
+<pre><code>
 
+</code></pre>
+            `,
+            script20:`
+<pre><code>
+
+</code></pre>
             `,
 
     };
