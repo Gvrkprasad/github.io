@@ -1,0 +1,8 @@
+region = "ap-south-1"
+vpc_cidr = "11.0.0.0/16"
+env = "dora_test"
+subnet_cidr = "11.0.1.0/24"
+availability_zone = "ap-south-1c"
+ami = "ami-053b12d3152c0cc71"
+instance_type = "t3.micro"
+key_name = "glpsk370-****"
