@@ -15,7 +15,7 @@ resource "aws_vpc" "default" {
     enable_dns_support = true
     enable_dns_hostnames = true
     tags = {
-        Name = "main"
+        Name = "babu_vpc"
     }
 }
 
@@ -59,7 +59,7 @@ resource "aws_db_subnet_group" "default" {
   subnet_ids = [aws_subnet.frontend.id, aws_subnet.backend.id]
 
   tags = {
-    Name = "My DB subnet group"
+    Name = "babu_db_subnet_group"
   }
 }
 resource "aws_db_instance" "default" {
