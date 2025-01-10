@@ -18,13 +18,13 @@ data "aws_availability_zones" "available" {
 
 # Variables
 variable "key_pair" {
-  default = "glpsk370-ubuntu"
+  default = "glpsk370-****"
 }
 
 variable "environment" {
   description = "Environment name"
   type        = string
-  default     = "glpsk"
+  default     = "Dorababu"
 }
 
 # VPC
@@ -262,7 +262,7 @@ network_interfaces {
               apt install -y apache2
               systemctl start acpache2
               systemctl enable apache2
-              echo "Hello from the application server" > /var/www/html/index.html
+              echo "Hello from babu sai,this is web server" > /var/www/html/index.html
               EOF
   )
     
@@ -355,7 +355,7 @@ network_interfaces {
               apt install -y apache2
               systemctl start acpache2
               systemctl enable apache2
-              echo "Hello from the application server" > /var/www/html/index.html
+              echo "Hello from babu sai,this is application server" > /var/www/html/index.html
               EOF
     )
 }
@@ -433,7 +433,7 @@ resource "aws_db_subnet_group" "main" {
   subnet_ids = aws_subnet.db[*].id
 
   tags = {
-    Name = "glp-db-subnet-group"
+    Name = "${var.environment}-db-subnet-group"
   }
 }
 
@@ -447,9 +447,9 @@ resource "aws_db_instance" "database" {
   engine              = "mysql"
   engine_version      = "8.0.39"
   instance_class      = "db.t4g.micro"
-  db_name             = "glpsdb"
-  username            = "glps"
-  password            = "sr10Dulkar!" # Change this in production
+  db_name             = "doradb"
+  username            = "dorababu"
+  password            = "sivakaladorababu" # Change this in production
   skip_final_snapshot = true
   vpc_security_group_ids = [aws_security_group.db.id]
   db_subnet_group_name   = aws_db_subnet_group.main.name
