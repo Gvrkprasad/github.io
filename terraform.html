@@ -3,113 +3,101 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Terraform Directory</title>
-    <link rel="stylesheet" href="styles.css"> <!-- Link your main CSS file -->
+    <title>Terraform Directory Viewer</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #282828;
-            color: #f5f5f5;
-            margin: 0;
-            padding: 20px;
         }
-        .container {
-            max-width: 800px;
-            margin: auto;
-            padding: 20px;
-            background-color: #333;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        }
-        h1 {
-            text-align: center;
-            color: #ff9800;
-        }
-        ul {
-            list-style-type: none;
-            padding: 0;
-            margin: 0;
-        }
-        li {
-            margin: 5px 0;
-            padding: 10px;
-            background-color: #444;
-            border-radius: 5px;
-            cursor: pointer;
-            position: relative;
-        }
-        li.folder {
-            font-weight: bold;
-            color: #ff9800;
-        }
-        li.file {
-            font-weight: normal;
-            color: #ffffff;
-        }
-        li::before {
-            content: "📂 ";
-            position: absolute;
-            left: -25px;
-        }
-        li.file::before {
-            content: "📄 ";
-        }
-        li.folder:hover,
-        li.file:hover {
-            background-color: #555;
-        }
-        li a {
-            text-decoration: none;
-            color: inherit;
-        }
-        li a:hover {
-            text-decoration: underline;
-        }
-        .nested {
-            display: none;
+        .directory {
             margin-left: 20px;
         }
-        .active {
-            display: block;
+        .file {
+            margin-left: 40px;
+            cursor: pointer;
+            color: blue;
+            text-decoration: underline;
+        }
+        .file:hover {
+            text-decoration: none;
+        }
+        pre {
+            background-color: #f4f4f4;
+            border: 1px solid #ddd;
+            padding: 10px;
+            overflow-x: auto;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Terraform Directory</h1>
-        <p>Browse the Terraform folder structure below:</p>
-        <ul id="directory-structure">
-            <li class="folder" onclick="toggleFolder(this)">Terraform
-                <ul class="nested">
-                    <li class="folder" onclick="toggleFolder(this)">Terraform RDS_mysql
-                        <ul class="nested">
-                            <li class="file"><a href="terraform/Terraform_RDS_mysql/main.tf" download>main.tf</a></li>
-                        </ul>
-                    </li>
-                    <li class="folder" onclick="toggleFolder(this)">Terraform Three_Tier Architecture
-                        <ul class="nested">
-                            <li class="folder" onclick="toggleFolder(this)">Terraform Three_Tier with main.tf
-                                <ul class="nested">
-                                    <li class="file"><a href="terraform/Terraform_Three_Tier_with_main.tf/main.tf" download>main.tf</a></li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="file"><a href="terraform/terraform_iamuser_bucket_policy/main.tf" download>terraform_iamuser_bucket_policy</a></li>
-                    <li class="file"><a href="terraform/terraform_cli_practice_s3/main.tf" download>terraform_cli_practice_s3</a></li>
-                    <li class="file"><a href="terraform/terraform_tf_vars_single_instance/main.tf" download>terraform_tf_vars_single_instance</a></li>
-                </ul>
-            </li>
-        </ul>
+    <h1>Terraform Directory Viewer</h1>
+    <div id="directory-viewer"></div>
+    <div id="file-content">
+        <h2>File Content</h2>
+        <pre id="content-area">Click on a file to view its content.</pre>
     </div>
 
     <script>
-        function toggleFolder(element) {
-            const nestedList = element.querySelector(".nested");
-            if (nestedList) {
-                nestedList.classList.toggle("active");
+        // Simulated directory structure and file content
+        const directoryData = {
+            "terraform_aws_e2_pub_module": {
+                "modules": {
+                    "ec2_instance": {
+                        "workflows": {},
+                        "examples": {},
+                        "complete": {},
+                        "session-manager": {},
+                        "volume-attachment": {},
+                        "wrappers": {}
+                    }
+                }
+            },
+            "terraform_aws_three_tier_with_module_concept": {
+                "modules": {
+                    "compute": {
+                        "main.tf": "Content of compute/main.tf",
+                        "variables.tf": "Content of compute/variables.tf"
+                    },
+                    "database": {
+                        "main.tf": "Content of database/main.tf",
+                        "variables.tf": "Content of database/variables.tf"
+                    },
+                    "loadbalancer": {
+                        "main.tf": "Content of loadbalancer/main.tf",
+                        "variables.tf": "Content of loadbalancer/variables.tf"
+                    },
+                    "s3_bucket": {},
+                    "security": {},
+                    "vpc": {}
+                }
             }
+        };
+
+        // Generate HTML structure for directories and files
+        function generateDirectoryHTML(directory, parent = "") {
+            let html = "<ul>";
+            for (const key in directory) {
+                if (typeof directory[key] === "object") {
+                    html += `<li><span class="directory">${key}</span>${generateDirectoryHTML(directory[key], `${parent}/${key}`)}</li>`;
+                } else {
+                    html += `<li><span class="file" onclick="showFileContent('${parent}/${key}')">${key}</span></li>`;
+                }
+            }
+            html += "</ul>";
+            return html;
         }
+
+        // Display file content
+        function showFileContent(filePath) {
+            const fileParts = filePath.split("/").slice(1);
+            let content = directoryData;
+            fileParts.forEach(part => {
+                content = content[part];
+            });
+            document.getElementById("content-area").textContent = content || "File is empty or content not available.";
+        }
+
+        // Initialize directory viewer
+        document.getElementById("directory-viewer").innerHTML = generateDirectoryHTML(directoryData);
     </script>
 </body>
 </html>
