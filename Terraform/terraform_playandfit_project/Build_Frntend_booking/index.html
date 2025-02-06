@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width,initial-scale=1"/>
+        <meta name="theme-color" content="#000000"/>
+        <meta name="description" content="Cricket-themed Web Application"/>
+        <link rel="icon" href="favicon.jpg"/>
+        <link rel="manifest" href="/manifest.json"/>
+        <title>Play & Fit Box_Cricket</title>
+        <style>
+            body {
+                margin: 0;
+                font-family: Arial,sans-serif;
+                background: linear-gradient(rgba(0,0,0,.5),rgba(0,0,0,.5)),url('bac6.jpg') no-repeat center center fixed;
+                background-size: cover;
+                color: #fff
+            }
+            header {
+                background: rgba(0,0,0,0.7);
+                padding: 10px; /* Reduced padding */
+                text-align: center;
+                font-size: 1.5rem; /* Reduced font size */
+                font-weight: 700;
+                text-transform: uppercase;
+                letter-spacing: 2px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+            header img {
+                height: 40px; /* Reduced logo size */
+                margin: 0 10px;
+            }
+            @media screen and (max-width: 768px) {
+            header {
+                font-size: 1.2rem; /* Reduce font size further on small screens */
+                padding: 8px; /* Less padding */
+                flex-direction: column; /* Stack elements in mobile view */
+            }
+            header img {
+                height: 35px; /* Smaller logos for mobile */
+                margin-bottom: 5px;
+            }
+        }
+            .tricolor-text {
+                background: linear-gradient(to right, #FF9933, white, #128807);
+                background-clip: text;
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                font-weight: bold;
+            }
+            /* Glow Effect Animation */
+            @keyframes glow {
+                from {
+                    text-shadow: 2px 2px 5px rgba(255, 153, 51, 0.8), 
+                                2px 2px 5px rgba(255, 255, 255, 0.8), 
+                                2px 2px 5px rgba(18, 136, 7, 0.8);
+                }
+                to {
+                    text-shadow: 4px 4px 10px rgba(255, 153, 51, 1), 
+                                4px 4px 10px rgba(255, 255, 255, 1), 
+                                4px 4px 10px rgba(18, 136, 7, 1);
+                }
+            }
+            .content {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 60vh;
+                flex-direction: column;
+                text-align: center
+            }
+            .content h1 {
+                font-size: 3.5rem;
+                text-shadow: 3px 3px 10px #000;
+                animation: fadeIn 2s ease-in-out
+            }
+            .content button {
+                margin-top: 20px;
+                padding: 15px 30px;
+                font-size: 1.5rem;
+                color: #fff;
+                background: #27ae60;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                box-shadow: 0 4px 8px rgba(0,0,0,.3);
+                transition: background .3s,transform .3s
+            }
+            .content button:hover {
+                background: #2ecc71;
+                transform: scale(1.1)
+            }
+            .upload-container {
+                display: flex;
+                justify-content: space-around;
+                flex-wrap: wrap;
+                margin: 20px;
+                padding: 20px;
+                background: rgba(0,0,0,.6);
+                border-radius: 10px;
+                box-shadow: 0 4px 10px rgba(0,0,0,.5)
+            }
+            .upload-box {
+                background: rgba(255,255,255,.9);
+                color: #000;
+                border-radius: 10px;
+                padding: 20px;
+                margin: 10px;
+                width: 250px;
+                text-align: center;
+                box-shadow: 0 4px 8px rgba(0,0,0,.2);
+                transition: transform .3s
+            }
+            .upload-box:hover {
+                transform: scale(1.1)
+            }
+            .upload-box input[type=file] {
+                display: block;
+                margin: 10px auto
+            }
+            footer {
+                text-align: center;
+                padding: 10px;
+                background: rgba(0,0,0,.8);
+                position: fixed;
+                bottom: 0;
+                width: 100%;
+                color: #aaa;
+                font-size: .9rem
+            }
+            footer a {
+                color: #27ae60;
+                text-decoration: none
+            }
+            footer a:hover {
+                text-decoration: underline
+            }
+            .icon {
+                font-size: 5rem;
+                margin: 20px;
+                color: #f4d03f;
+                animation: bounce 2s infinite
+            }
+            @keyframes bounce {
+                0%,100%,20%,50%,80% {
+                    transform: translateY(0)
+                }
+                40% {
+                    transform: translateY(-20px)
+                }
+                60% {
+                    transform: translateY(-10px)
+                }
+            }
+            @keyframes fadeIn {
+                from {
+                    opacity: 0
+                }
+                to {
+                    opacity: 1
+                }
+            }
+        </style>
+        <script defer="defer" src="/static/js/main.8186406d.js"></script>
+        <link href="static/css/main.e6c13ad2.css" rel="stylesheet">
+    </head>
+    <body>
+        <header>
+            <img src="play.jpg" alt="Play Logo" height="50">
+            <span class="tricolor-text">   Welcome to PLAY & FIT Box_Cricket JPT</span>
+            <img src="headercricket.jpg" alt="Cricket Icon" height="50">
+        </header>
+        <div class="content">
+            <div id="root"></div>
+        </div>
+        
+        <footer>
+            &copy;2025 Cricket Play & Fit. All Rights Reserved. Please Follow us on instagram 
+            <a href="https://www.instagram.com/playandfit_boxcricket_jpt?igsh=MWI0aTJoOWZvbGN6ag==" target="_blank">
+                <img src="insta.png" alt="insta Logo">
+            </a>
+        </footer>
+    </body>
+</html>

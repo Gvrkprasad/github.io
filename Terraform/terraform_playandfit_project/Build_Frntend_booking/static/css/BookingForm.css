@@ -1,0 +1,142 @@
+.booking-wrapper {
+    background: rgba(0, 0, 0, 0.8);
+    padding: 20px;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 450px;
+    margin: auto;
+    text-align: center;
+    color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Centering the form properly */
+.content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: auto;
+    padding: 30px 0;
+}
+
+.title {
+    font-size: 24px;
+    font-weight: bold;
+    text-transform: uppercase;
+    background: linear-gradient(to right, orange, white, green);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: inline-block;
+}
+
+.booking-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+}
+
+.booking-form label {
+    font-weight: bold;
+    color: #ddd;
+    text-align: left;
+}
+
+.booking-form input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100%;
+}
+
+.time-slot {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.time-slot input {
+    width: 45%;
+}
+
+button {
+    background: linear-gradient(to right, orange, white, green);
+    color: black;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: 0.3s;
+}
+
+button:hover {
+    opacity: 0.8;
+    transform: scale(1.05);
+}
+/* Default styles (for desktop and larger screens) */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  /* For devices with a width less than 768px (tablets and mobile devices) */
+  @media screen and (max-width: 768px) {
+    body {
+      font-size: 14px; /* Reduce font size for smaller screens */
+    }
+  
+    header {
+      text-align: center; /* Center header content */
+    }
+  
+    .container {
+      width: 100%; /* Make container take full width */
+      padding: 10px; /* Add some padding */
+    }
+  
+    .card {
+      margin: 10px 0; /* Adjust margin for smaller screens */
+      width: 100%; /* Make cards full width */
+    }
+  }
+  
+  /* For devices with a width less than 480px (mobile devices) */
+  header {
+    background: rgba(0,0,0,0.7);
+    padding: 10px; /* Reduced padding */
+    text-align: center;
+    font-size: 1.5rem; /* Reduced font size */
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+header img {
+    height: 40px; /* Reduced logo size */
+    margin: 0 10px;
+}
+
+/* Responsive header for mobile */
+@media screen and (max-width: 768px) {
+    header {
+        font-size: 1.2rem; /* Reduce font size further on small screens */
+        padding: 8px; /* Less padding */
+        flex-direction: column; /* Stack elements in mobile view */
+    }
+
+    header img {
+        height: 35px; /* Smaller logos for mobile */
+        margin-bottom: 5px;
+    }
+}

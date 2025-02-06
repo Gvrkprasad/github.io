@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Box Cricket Booking</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #666;
+            color: white;
+            text-align: center;
+        }
+        header {
+            background: black;
+            padding: 10px;
+        }
+        h1 {
+            color: orange;
+        }
+        .form-container {
+            background: #555;
+            padding: 20px;
+            width: 50%;
+            margin: auto;
+            border-radius: 10px;
+        }
+        input, button {
+            display: block;
+            width: 90%;
+            padding: 10px;
+            margin: 10px auto;
+        }
+        button {
+            background: green;
+            color: white;
+            cursor: pointer;
+        }
+        footer {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>WELCOME TO <span class="highlight">PLAY & FIT BOX_CRICKET JPT</span></h1>
+    </header>
+    <div class="form-container">
+        <h2> Get Ready to Play! </h2>
+        <label>Select Request Type:</label>
+        <label><input type="radio" name="method" value="POST" checked> POST</label>
+        <label><input type="radio" name="method" value="GET"> GET</label>
+        <label><input type="radio" name="method" value="OPTIONS"> OPTIONS</label>
+        <form id="bookingForm">
+            <label for="name">Name:</label>
+            <input type="text" id="name" placeholder="Enter Name" required>
+            <label for="mobile">Mobile Number:</label>
+            <input type="text" id="mobile" placeholder="Enter Mobile Number" required>
+            <label for="date">Date:</label>
+            <input type="date" id="date" required>
+            <fieldset>
+                <legend>Time Slot:</legend>
+                <label for="start_time">Start Time:</label>
+                <input type="time" id="start_time">
+                <label for="end_time">End Time:</label>
+                <input type="time" id="end_time" required>
+            </fieldset>
+            <label for="insta">InstaID (Optional):</label>
+            <input type="text" id="insta" placeholder="Optional">
+            <button type="submit">Book Slot</button>
+        </form>
+    </div>
+    <footer>
+        <p>&copy; 2025 Cricket Play & Fit. All Rights Reserved. Follow us on Instagram</p>
+    </footer>
+    <script>
+        document.getElementById('bookingForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const method = document.querySelector('input[name="method"]:checked').value;
+            const bookingData = {
+                name: document.getElementById('name').value,
+                mobile: document.getElementById('mobile').value,
+                date: document.getElementById('date').value,
+                start_time: document.getElementById('start_time').value,
+                end_time: document.getElementById('end_time').value,
+                insta: document.getElementById('insta').value
+            };
+            fetch('https://7o7s6uk2jhubjwwdmkrmejgzce0jjcdx.lambda-url.ap-south-1.on.aws/', {
+                method: method,
+                headers: { "Content-Type": "application/json" },
+                body: method === 'GET' || method === 'OPTIONS' ? null : JSON.stringify(bookingData)
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+                return response.json();
+            })
+            .then(data => alert('Request Successful!'))
+            .catch(error => {
+                console.error('Error:', error);
+                alert('An error occurred! Contact Play & Fit team 9182056897/9666505506');
+            });
+        });
+    </script>
+</body>
+</html>

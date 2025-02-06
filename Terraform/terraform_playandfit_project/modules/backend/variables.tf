@@ -1,0 +1,10 @@
+variable "lambda_filename" {}
+  variable "lambda_function_name" {}
+  variable "lambda_runtime" {}
+  variable "database_url" {}
+  variable "db_username" {}
+  variable "db_password" {}
+  variable "db_name" {}
+  variable "lambda_handler" {}
+  variable "sns_topic_arn" {}
+  variable "iam_lambda_rds_role_arn" {}
