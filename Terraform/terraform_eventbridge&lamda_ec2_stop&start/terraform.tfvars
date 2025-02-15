@@ -1,0 +1,7 @@
+region        = "ap-south-1"
+ami           = "ami-00bb6a80f01f03502"
+instance_type = "t2.micro"
+vpc_cidr      = "11.0.0.0/16"
+subnet_cidr   = "11.0.2.0/24"
+key_name      = "glpsk371-ubuntu"
+environment   = "dev"

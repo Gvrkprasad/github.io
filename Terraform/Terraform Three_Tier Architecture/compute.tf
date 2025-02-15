@@ -15,7 +15,7 @@ resource "aws_launch_template" "web" {
               #!/bin/bash
               apt update -y
               apt install -y apache2
-              echo "Hello from Dora, this is a sample webserver " > /var/www/html/index.html
+              echo "Hello from the web server" > /var/www/html/index.html
               sudo systemctl enable apache2
               EOF
   )
@@ -44,7 +44,7 @@ resource "aws_launch_template" "app" {
               #!/bin/bash
               apt update -y
               apt install -y apache2
-              echo "Hello from Dora, this is a sample webserver " > /var/www/html/index.html
+              echo "Hello from the application server" > /var/www/html/index.html
               sudo systemctl enable apache2
               EOF
   )

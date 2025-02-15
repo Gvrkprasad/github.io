@@ -59,7 +59,7 @@ resource "aws_db_subnet_group" "default" {
   subnet_ids = [aws_subnet.frontend.id, aws_subnet.backend.id]
 
   tags = {
-    Name = "babu_db_subnet_group"
+    Name = "babu_DB_subnet_group"
   }
 }
 resource "aws_db_instance" "default" {

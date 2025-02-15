@@ -1,0 +1,21 @@
+environment = "babu"
+cidr_block = "11.0.0.0/16"
+instance_type = "t3.micro"
+key_name = "glpsk370-ubuntu"
+ami = "ami-00bb6a80f01f03502"
+desired_capacity_web_asg = 2
+max_size_web_asg = 3
+min_size_web_asg = 1
+desired_capacity_app_asg = 2
+max_size_app_asg = 3
+min_size_app_asg = 1
+identifier = "dorababu"
+storage = 20
+storage_type = "gp2"
+instance_class = "db.t4g.micro"
+engine = "mysql"
+engine_version = "8.0.39"
+db_name = "dorababu_db"
+username = "babusai"
+password = "sivakaladorababu"   # provide yours custom pass
+

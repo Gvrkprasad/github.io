@@ -75,7 +75,6 @@ resource "aws_nat_gateway" "main" {
 # Elastic IPs for NAT Gateway
 resource "aws_eip" "nat" {
   count = 1
-  vpc   = true
 
   tags = {
     Name = "${var.environment}-nat-eip"

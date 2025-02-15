@@ -13,5 +13,5 @@ provider "aws" {
 
 # Use existing key pair
 data "aws_key_pair" "existing" {
-  key_name = "glpsk370-****"    # replace with your aws ubuntu instance key_pair
+  key_name = "glpsk370-ubuntu"    # replace with your aws ubuntu instance key_pair
 }
