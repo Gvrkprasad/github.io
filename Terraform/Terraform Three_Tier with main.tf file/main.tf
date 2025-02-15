@@ -449,7 +449,7 @@ resource "aws_db_instance" "database" {
   instance_class      = "db.t4g.micro"
   db_name             = "glpsdb"
   username            = "glps"
-  password            = "sr10Dulkar!" # Change this in production
+  password            = "yourpassword" # Change this in production
   skip_final_snapshot = true
   vpc_security_group_ids = [aws_security_group.db.id]
   db_subnet_group_name   = aws_db_subnet_group.main.name

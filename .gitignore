@@ -4,6 +4,10 @@
 *.tfstate.backup
 terraform.tfstate
 /*/*.tfstate.*
+/Terraform/*/.tfstate
+/Terraform/*/*.tfstate.backup
+/Terraform/*/terraform.tfstate
+
 
 # Crash log files
 crash.log

@@ -3,7 +3,7 @@ function credentialExchange(googleToken) {
     AWS.config.region = 'ap-south-1';  // Set your AWS region
 
     AWS.config.credentials = new AWS.CognitoIdentityCredentials({
-        IdentityPoolId: 'ap-south-1:f950a416-5f93-4bf3-9126-8a22348aa47c',  // Replace with your Cognito Identity Pool ID
+        IdentityPoolId: 'ap-south-1:f950a416-5f93-4bf3-***********',  // Replace with your Cognito Identity Pool ID
         Logins: {
             'accounts.google.com': googleToken
         }
