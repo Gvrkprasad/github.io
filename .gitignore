@@ -26,6 +26,5 @@ override.tf.json
 
 lord.jpg
 .gitignore
-remote_module\*
-remote_module
+
 
